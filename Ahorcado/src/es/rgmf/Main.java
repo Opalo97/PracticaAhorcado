@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String frase;
+        String frase, solucion;
+        char respuesta;
         String[] frases;
         char[] fraseOculta;
         Scanner entrada = new Scanner(System.in);
@@ -41,6 +42,34 @@ public class Main {
         System.out.println(fraseOculta);
 
         // TODO Completa el programa.
+        do {
+            // Pide una letra
+            System.out.print("Dame una letra: ");
+            char letra = entrada.nextLine().charAt(0);
+
+            // Modificar la frase oculta
+            for (int i = 0 ; i < frase.length(); i++) {
+                if (frase.toLowerCase().charAt(i) == letra || frase.toUpperCase().charAt(i) == letra) {
+                    fraseOculta[i] = letra;
+                }
+            }
+
+            // Mostrar frase oculta
+            System.out.println(fraseOculta);
+
+            // Preguntar si resolver
+            System.out.println("¿Quieres resolver la frase? (S/N)");
+            respuesta = entrada.nextLine().charAt(0);
+
+        } while (respuesta != 'S' && respuesta != 's');
+
+        System.out.println("Dame la frase: ");
+        solucion = entrada.nextLine();
+        if (solucion.equalsIgnoreCase(frase)) {
+            System.out.println("CORRECTO!!");
+        } else {
+            System.out.println("No era esa frase, la frase correcta es " + frase);
+        }
 
         entrada.close();
     }
